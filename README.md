@@ -1,17 +1,19 @@
-# JPrime GYM 🏋️
+# JPrime Gimnasio 🏋️
 
-Sitio web oficial de **JPrime GYM** — un gimnasio moderno. Landing page con secciones de servicios, planes de membresía, horarios de clases y contacto.
+Sitio web oficial de **JPrime Gimnasio** — un gimnasio moderno. Landing page con disciplinas, horarios de clases, planes de membresía, galería y contacto.
 
 ## Estructura
 
 ```
 JPrime-GYM-/
-├── index.html        # Página principal
+├── index.html            # Página principal
 ├── css/
-│   └── styles.css    # Estilos (diseño oscuro y responsivo)
-├── js/
-│   └── main.js       # Menú móvil, animaciones y formulario
-└── assets/           # Imágenes y recursos
+│   ├── styles.css        # Estilos base (colores, layout, componentes, responsivo)
+│   └── animaciones.css   # Toda la lógica visual animada: keyframes, entrada de
+│                          # elementos al hacer scroll y micro-interacciones hover
+└── js/
+    ├── main.js           # Menú móvil, año dinámico y validación del formulario
+    └── animaciones.js    # Observer de scroll que revela las secciones (.reveal)
 ```
 
 ## Cómo verlo

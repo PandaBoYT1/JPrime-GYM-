@@ -1,0 +1,66 @@
+/* =====================================================
+   JPrime Gimnasio - Animaciones
+   Toda la lógica visual animada del sitio vive aquí:
+   keyframes, entrada de elementos y micro-interacciones.
+   ===================================================== */
+
+/* ===== Keyframes ===== */
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: .55; }
+  50% { opacity: .9; }
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ===== Entrada del hero (se ejecuta al cargar) ===== */
+.anim-float { animation: floatUp .8s ease both; }
+.anim-float--delay { animation-delay: .15s; animation-duration: 1s; }
+
+.anim-pulse { animation: pulseGlow 1.8s ease infinite; }
+.anim-pulse--slow { animation-duration: 3s; }
+
+/* ===== Aparición al hacer scroll ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Retraso escalonado para tarjetas dentro de una cuadrícula (aplicado vía JS) */
+.reveal[data-delay="1"].visible { transition-delay: .05s; }
+.reveal[data-delay="2"].visible { transition-delay: .1s; }
+.reveal[data-delay="3"].visible { transition-delay: .15s; }
+.reveal[data-delay="4"].visible { transition-delay: .2s; }
+.reveal[data-delay="5"].visible { transition-delay: .25s; }
+.reveal[data-delay="6"].visible { transition-delay: .3s; }
+.reveal[data-delay="7"].visible { transition-delay: .35s; }
+.reveal[data-delay="8"].visible { transition-delay: .4s; }
+
+/* ===== Micro-interacciones (hover) ===== */
+.btn { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease; }
+.btn--primary:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(196, 245, 63, 0.4); }
+.btn--ghost:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
+
+.discipline { transition: transform .25s ease, border-color .25s ease; }
+.discipline:hover { transform: translateY(-6px); border-color: var(--accent); }
+
+.plan { transition: transform .25s ease, border-color .25s ease; }
+.plan:hover { transform: translateY(-6px); }
+
+.gallery__item { transition: transform .3s ease, border-color .3s ease; }
+.gallery__item:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+.schedule tbody tr { transition: background .2s ease; }
+.schedule tbody tr:hover { background: rgba(196, 245, 63, 0.06); }
+
+/* Respeta a las personas que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .anim-float, .anim-pulse, .reveal, .discipline, .plan, .gallery__item, .btn {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

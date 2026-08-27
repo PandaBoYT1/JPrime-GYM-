@@ -1,16 +1,7 @@
-/* ===== JPrime GYM - Interactividad ===== */
+/* ===== JPrime Gimnasio - Interactividad principal ===== */
 document.addEventListener('DOMContentLoaded', function () {
-  var header = document.getElementById('header');
   var navToggle = document.getElementById('navToggle');
   var nav = document.getElementById('nav');
-
-  // Header con fondo al hacer scroll
-  function onScroll() {
-    if (window.scrollY > 40) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  }
-  window.addEventListener('scroll', onScroll);
-  onScroll();
 
   // Menú móvil
   if (navToggle && nav) {
@@ -18,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       nav.classList.toggle('open');
       navToggle.classList.toggle('open');
     });
-    // Cerrar el menú al hacer clic en un enlace
-    nav.querySelectorAll('.nav__link').forEach(function (link) {
+    nav.querySelectorAll('.nav__link, .nav__cta').forEach(function (link) {
       link.addEventListener('click', function () {
         nav.classList.remove('open');
         navToggle.classList.remove('open');
@@ -30,24 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Año dinámico en el footer
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // Animación de aparición al hacer scroll
-  var revealEls = document.querySelectorAll('.card, .plan, .section__head, .schedule, .contact__info, .contact__form');
-  revealEls.forEach(function (el) { el.classList.add('reveal'); });
-
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('visible'); });
-  }
 
   // Validación del formulario de contacto
   var form = document.getElementById('contactForm');
