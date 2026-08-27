@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JPrime GYM - Tu gimnasio para superar tus límites. Entrenamiento funcional, musculación, clases grupales y planes a tu medida." />
+  <title>JPrime GYM | Supera tus límites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="logo">J<span>PRIME</span> GYM</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link">Inicio</a></li>
+          <li><a href="#servicios" class="nav__link">Servicios</a></li>
+          <li><a href="#planes" class="nav__link">Planes</a></li>
+          <li><a href="#horarios" class="nav__link">Horarios</a></li>
+          <li><a href="#contacto" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="#planes" class="btn btn--primary header__cta">Únete ahora</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Bienvenido a JPrime GYM</p>
+      <h1 class="hero__title">SUPERA TUS <span>LÍMITES</span></h1>
+      <p class="hero__text">Entrena con equipos de última generación, coaches certificados y una comunidad que te empuja a ser tu mejor versión. Tu transformación empieza hoy.</p>
+      <div class="hero__actions">
+        <a href="#planes" class="btn btn--primary">Ver planes</a>
+        <a href="#servicios" class="btn btn--ghost">Nuestros servicios</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat"><span class="stat__num">+1200</span><span class="stat__label">Socios activos</span></div>
+        <div class="stat"><span class="stat__num">15</span><span class="stat__label">Coaches expertos</span></div>
+        <div class="stat"><span class="stat__num">24/7</span><span class="stat__label">Acceso al gym</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Lo que ofrecemos</p>
+        <h2 class="section__title">Nuestros servicios</h2>
+        <p class="section__subtitle">Todo lo que necesitas para alcanzar tus objetivos en un solo lugar.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__icon">🏋️</div>
+          <h3 class="card__title">Musculación</h3>
+          <p class="card__text">Amplia zona de peso libre y máquinas guiadas para desarrollar fuerza e hipertrofia con seguridad.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">🤸</div>
+          <h3 class="card__title">Entrenamiento funcional</h3>
+          <p class="card__text">Circuitos de alta intensidad que mejoran tu movilidad, resistencia y coordinación.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">🧘</div>
+          <h3 class="card__title">Clases grupales</h3>
+          <p class="card__text">Spinning, yoga, box y HIIT. Entrena en grupo y mantén la motivación al máximo.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">📋</div>
+          <h3 class="card__title">Planes personalizados</h3>
+          <p class="card__text">Rutinas y seguimiento diseñados a tu medida por nuestros entrenadores certificados.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">🥗</div>
+          <h3 class="card__title">Asesoría nutricional</h3>
+          <p class="card__text">Acompañamiento nutricional para potenciar tus resultados dentro y fuera del gym.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon">💪</div>
+          <h3 class="card__title">Zona CrossTraining</h3>
+          <p class="card__text">Espacio equipado con racks, cuerdas y kettlebells para tus WODs más exigentes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planes -->
+  <section class="section section--dark" id="planes">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Elige tu plan</p>
+        <h2 class="section__title">Membresías</h2>
+        <p class="section__subtitle">Sin permanencia forzada. Cancela cuando quieras.</p>
+      </div>
+      <div class="grid grid--3 plans">
+        <article class="plan">
+          <h3 class="plan__name">Básico</h3>
+          <p class="plan__price"><span>S/</span>79<small>/mes</small></p>
+          <ul class="plan__features">
+            <li>Acceso a sala de musculación</li>
+            <li>Horario de 6am a 10pm</li>
+            <li>Casillero incluido</li>
+            <li>App de seguimiento</li>
+          </ul>
+          <a href="#contacto" class="btn btn--ghost plan__btn">Empezar</a>
+        </article>
+        <article class="plan plan--featured">
+          <span class="plan__badge">Más popular</span>
+          <h3 class="plan__name">Pro</h3>
+          <p class="plan__price"><span>S/</span>129<small>/mes</small></p>
+          <ul class="plan__features">
+            <li>Todo lo del plan Básico</li>
+            <li>Acceso 24/7</li>
+            <li>Todas las clases grupales</li>
+            <li>1 asesoría nutricional al mes</li>
+          </ul>
+          <a href="#contacto" class="btn btn--primary plan__btn">Empezar</a>
+        </article>
+        <article class="plan">
+          <h3 class="plan__name">Elite</h3>
+          <p class="plan__price"><span>S/</span>199<small>/mes</small></p>
+          <ul class="plan__features">
+            <li>Todo lo del plan Pro</li>
+            <li>Entrenador personal 4x/mes</li>
+            <li>Plan nutricional completo</li>
+            <li>Invitado gratis 2x/mes</li>
+          </ul>
+          <a href="#contacto" class="btn btn--ghost plan__btn">Empezar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horarios -->
+  <section class="section" id="horarios">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__eyebrow">Planifica tu semana</p>
+        <h2 class="section__title">Horarios de clases</h2>
+        <p class="section__subtitle">Reserva tu cupo desde la app o en recepción.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="schedule">
+          <thead>
+            <tr><th>Hora</th><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>7:00</td><td>HIIT</td><td>Spinning</td><td>HIIT</td><td>Spinning</td><td>Funcional</td></tr>
+            <tr><td>10:00</td><td>Yoga</td><td>Box</td><td>Yoga</td><td>Box</td><td>Yoga</td></tr>
+            <tr><td>18:00</td><td>CrossTraining</td><td>Funcional</td><td>CrossTraining</td><td>Funcional</td><td>HIIT</td></tr>
+            <tr><td>20:00</td><td>Spinning</td><td>Yoga</td><td>Spinning</td><td>Box</td><td>Baile</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section section--dark" id="contacto">
+    <div class="container contact">
+      <div class="contact__info">
+        <p class="section__eyebrow">Estamos para ayudarte</p>
+        <h2 class="section__title">Contáctanos</h2>
+        <p class="section__subtitle">Agenda una visita gratuita y conoce nuestras instalaciones.</p>
+        <ul class="contact__list">
+          <li><strong>Dirección:</strong> Av. Principal 123, Lima, Perú</li>
+          <li><strong>Teléfono:</strong> +51 999 888 777</li>
+          <li><strong>Email:</strong> hola@jprimegym.com</li>
+          <li><strong>Horario:</strong> Lun a Vie 6am–10pm · Sáb 8am–6pm</li>
+        </ul>
+      </div>
+      <form class="contact__form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+        </div>
+        <div class="field">
+          <label for="plan">Plan de interés</label>
+          <select id="plan" name="plan">
+            <option value="Básico">Básico</option>
+            <option value="Pro" selected>Pro</option>
+            <option value="Elite">Elite</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="4" placeholder="Cuéntanos tu objetivo"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+        <p class="form__status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#inicio" class="logo">J<span>PRIME</span> GYM</a>
+      <p class="footer__text">© <span id="year"></span> JPrime GYM. Todos los derechos reservados.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
