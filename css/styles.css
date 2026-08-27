@@ -61,6 +61,8 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
 }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .logo { display: flex; align-items: center; gap: 12px; }
+.logo__mark { width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 0 18px rgba(196, 245, 63, 0.35); }
+.logo--sm .logo__mark { width: 40px; height: 40px; }
 .logo__text { font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: 1px; }
 .logo__text span { color: var(--accent); }
 .nav { display: flex; align-items: center; gap: 30px; }
@@ -109,7 +111,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   position: absolute; width: 420px; height: 420px; border-radius: 50%;
   background: radial-gradient(circle, rgba(196, 245, 63, 0.28), transparent 68%); filter: blur(20px);
 }
-.hero__emblem { position: relative; width: min(420px, 42vw); height: auto; filter: drop-shadow(0 0 70px rgba(196, 245, 63, 0.28)); }
+.hero__emblem { position: relative; width: min(440px, 42vw); height: auto; border-radius: 50%; box-shadow: 0 0 70px rgba(196, 245, 63, 0.28); }
 
 /* ===== Secciones ===== */
 .section { padding: 90px 0; }
