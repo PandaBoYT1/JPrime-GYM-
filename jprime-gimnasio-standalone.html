@@ -216,9 +216,18 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   border: 1px solid var(--border-accent); border-radius: 16px;
 }
 .supplement__img {
-  height: 210px; background-size: cover; background-position: center;
-  background-color: #101210; border-bottom: 1px solid var(--border);
+  height: 230px; background-size: contain; background-repeat: no-repeat; background-position: center;
+  background-color: #0c0e0c; border-bottom: 1px solid var(--border);
+  cursor: zoom-in; position: relative; transition: background-color .2s ease;
 }
+.supplement__img:not(.supplement__img--empty)::after {
+  content: "🔍 Ver"; position: absolute; bottom: 10px; right: 10px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .5px;
+  color: var(--bg); background: var(--accent); padding: 4px 10px; border-radius: 100px;
+  opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease;
+}
+.supplement__img:not(.supplement__img--empty):hover { background-color: #121512; }
+.supplement__img:not(.supplement__img--empty):hover::after { opacity: 1; transform: none; }
 .supplement__img--empty {
   display: flex; align-items: center; justify-content: center;
   background-image: repeating-linear-gradient(45deg, #101210, #101210 10px, #151813 10px, #151813 20px);
@@ -236,6 +245,51 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   color: var(--accent); margin: 14px 0 18px;
 }
 .supplement__btn { margin-top: auto; width: 100%; }
+
+/* ===== Modal de suplemento ===== */
+.modal {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal.open { display: flex; }
+.modal__backdrop {
+  position: absolute; inset: 0; background: rgba(4, 5, 5, 0.8); backdrop-filter: blur(6px);
+}
+.modal__dialog {
+  position: relative; z-index: 1; width: 100%; max-width: 860px; max-height: 90vh; overflow: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  background: linear-gradient(160deg, var(--card-1), var(--card-2));
+  border: 1px solid var(--border-accent); border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  animation: modalIn .25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
+.modal__close {
+  position: absolute; top: 12px; right: 12px; z-index: 3; width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--border); background: rgba(8, 9, 10, 0.7); color: #fff; font-size: 1.1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; transition: .2s;
+}
+.modal__close:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.modal__img {
+  background: #0c0e0c; display: flex; align-items: center; justify-content: center; padding: 20px;
+  border-right: 1px solid var(--border); min-height: 320px;
+}
+.modal__img img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; }
+.modal__img--empty {
+  color: #6f7a68; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; text-transform: uppercase;
+  border: 1px dashed rgba(196, 245, 63, .3); border-radius: 8px; min-height: 260px; width: 100%;
+}
+.modal__body { padding: 34px 30px; display: flex; flex-direction: column; }
+.modal__eyebrow { color: var(--accent); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: .8rem; }
+.modal__name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; font-size: 2rem; color: #fff; margin: 8px 0 6px; line-height: 1.05; }
+.modal__desc { color: var(--muted); font-size: 1.05rem; }
+.modal__price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.4rem; color: var(--accent); margin: 20px 0 24px; }
+.modal__btn { margin-top: auto; width: 100%; }
+@media (max-width: 680px) {
+  .modal__dialog { grid-template-columns: 1fr; }
+  .modal__img { border-right: none; border-bottom: 1px solid var(--border); min-height: 240px; }
+  .modal__img img { max-height: 42vh; }
+}
 
 /* ===== CTA con mascota ===== */
 .cta {
@@ -711,6 +765,22 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
     </div>
   </footer>
 
+  <!-- Modal de suplemento -->
+  <div class="modal" id="supModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="supModalName">
+      <button class="modal__close" data-close aria-label="Cerrar">✕</button>
+      <div class="modal__img" id="supModalImg"></div>
+      <div class="modal__body">
+        <p class="modal__eyebrow">Suplemento</p>
+        <h3 class="modal__name" id="supModalName"></h3>
+        <p class="modal__desc" id="supModalDesc"></p>
+        <p class="modal__price" id="supModalPrice"></p>
+        <a class="btn btn--primary modal__btn" id="supModalBtn" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
   <script>
 /* =====================================================
    JPrime Gimnasio - Modelo de datos compartido
@@ -996,8 +1066,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (supsGrid) {
       supsGrid.innerHTML = data.suplementos.map(function (s, i) {
         var media = s.img
-          ? '<div class="supplement__img" style="background-image:url(\'' + s.img.replace(/'/g, "%27") + '\')"></div>'
-          : '<div class="supplement__img supplement__img--empty"><span>Sin foto</span></div>';
+          ? '<div class="supplement__img" data-sup="' + i + '" role="button" tabindex="0" title="Ver detalle" style="background-image:url(\'' + s.img.replace(/'/g, "%27") + '\')"></div>'
+          : '<div class="supplement__img supplement__img--empty" data-sup="' + i + '" role="button" tabindex="0" title="Ver detalle"><span>Sin foto</span></div>';
         var href = J.waLink(J.mensajeSuplemento(s));
         return '' +
           '<article class="supplement reveal" data-delay="' + (i + 1) + '">' +
@@ -1010,6 +1080,15 @@ document.addEventListener('DOMContentLoaded', function () {
             "</div>" +
           "</article>";
       }).join("");
+
+      // Abrir modal al hacer clic en la foto del suplemento
+      Array.prototype.forEach.call(supsGrid.querySelectorAll("[data-sup]"), function (el) {
+        function open() { openSupModal(data.suplementos[parseInt(el.getAttribute("data-sup"), 10)]); }
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
     }
 
     // ---- Galería (hidratar src + caption) ----
@@ -1028,6 +1107,44 @@ document.addEventListener('DOMContentLoaded', function () {
     var hEls = document.querySelectorAll("[data-horario]");
     var texto = J.horarioTexto(data.horario);
     hEls.forEach(function (el) { el.textContent = texto; });
+  }
+
+  /* ---- Modal de suplemento ---- */
+  var modal = document.getElementById("supModal");
+
+  function closeSupModal() {
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function openSupModal(s) {
+    if (!modal || !s) return;
+    var imgWrap = document.getElementById("supModalImg");
+    imgWrap.className = "modal__img";
+    if (s.img) {
+      imgWrap.innerHTML = '<img src="' + s.img.replace(/"/g, "&quot;") + '" alt="' + esc(s.nombre) + '" />';
+    } else {
+      imgWrap.classList.add("modal__img--empty");
+      imgWrap.innerHTML = "<span>Sin foto disponible</span>";
+    }
+    document.getElementById("supModalName").textContent = s.nombre;
+    document.getElementById("supModalDesc").textContent = s.desc || "";
+    document.getElementById("supModalPrice").textContent = "S/ " + s.precio;
+    document.getElementById("supModalBtn").href = J.waLink(J.mensajeSuplemento(s));
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  if (modal) {
+    modal.querySelectorAll("[data-close]").forEach(function (el) {
+      el.addEventListener("click", closeSupModal);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSupModal();
+    });
   }
 
   if (document.readyState === "loading") {

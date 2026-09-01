@@ -253,6 +253,22 @@
     </div>
   </footer>
 
+  <!-- Modal de suplemento -->
+  <div class="modal" id="supModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="supModalName">
+      <button class="modal__close" data-close aria-label="Cerrar">✕</button>
+      <div class="modal__img" id="supModalImg"></div>
+      <div class="modal__body">
+        <p class="modal__eyebrow">Suplemento</p>
+        <h3 class="modal__name" id="supModalName"></h3>
+        <p class="modal__desc" id="supModalDesc"></p>
+        <p class="modal__price" id="supModalPrice"></p>
+        <a class="btn btn--primary modal__btn" id="supModalBtn" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/datos.js"></script>
   <script src="js/main.js"></script>
   <script src="js/render.js"></script>
