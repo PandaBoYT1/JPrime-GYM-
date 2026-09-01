@@ -254,15 +254,16 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
 .contact__map-btn { margin-top: 16px; }
 
 /* ===== Redes sociales ===== */
-.social { display: flex; gap: 12px; }
+.social { display: flex; gap: 16px; flex-wrap: wrap; }
 .social__btn {
-  width: 44px; height: 44px; border-radius: 50%;
+  width: 60px; height: 60px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  background: var(--accent-soft); border: 1px solid var(--border-accent);
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  background: rgba(196, 245, 63, 0.14); border: 2px solid rgba(196, 245, 63, 0.55);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
-.social__btn svg { width: 20px; height: 20px; fill: var(--accent); transition: fill .2s ease; }
-.social__btn:hover { transform: translateY(-3px); }
+.social__btn svg { width: 28px; height: 28px; fill: var(--accent); transition: fill .2s ease; }
+.social__btn:hover { transform: translateY(-4px) scale(1.05); }
 .social__btn--fb:hover { background: #1877f2; box-shadow: 0 8px 20px rgba(24, 119, 242, .4); border-color: #1877f2; }
 .social__btn--ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(220, 39, 67, .4); border-color: transparent; }
 .social__btn--tt:hover { background: #000; box-shadow: 0 8px 20px rgba(0, 0, 0, .5); border-color: #25f4ee; }
@@ -550,7 +551,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
             <li>Casillero incluido</li>
             <li>App de rutinas</li>
           </ul>
-          <a href="#contacto" class="btn btn--ghost plan__btn">Elegir básico</a>
+          <a href="https://wa.me/51981229622?text=%C2%A1Hola%21%20Me%20interesa%20inscribirme%20en%20el%20Plan%20B%C3%A1sico%20%28S/%2099%20/%20mes%29%20de%20JPrime%20Gimnasio.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="btn btn--ghost plan__btn">Elegir básico</a>
         </article>
         <article class="plan plan--featured reveal" data-delay="2">
           <span class="plan__badge">Más popular</span>
@@ -564,7 +565,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
             <li>1 sesión con entrenador / mes</li>
             <li>Evaluación física trimestral</li>
           </ul>
-          <a href="#contacto" class="btn btn--primary plan__btn">Elegir pro</a>
+          <a href="https://wa.me/51981229622?text=%C2%A1Hola%21%20Me%20interesa%20inscribirme%20en%20el%20Plan%20Pro%20%28S/%20159%20/%20mes%29%20de%20JPrime%20Gimnasio.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="btn btn--primary plan__btn">Elegir pro</a>
         </article>
         <article class="plan reveal" data-delay="3">
           <h3 class="plan__name">Elite</h3>
@@ -577,7 +578,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
             <li>Acceso a zona VIP y spa</li>
             <li>Invitado gratis 2 veces / mes</li>
           </ul>
-          <a href="#contacto" class="btn btn--ghost plan__btn">Elegir elite</a>
+          <a href="https://wa.me/51981229622?text=%C2%A1Hola%21%20Me%20interesa%20inscribirme%20en%20el%20Plan%20Elite%20%28S/%20259%20/%20mes%29%20de%20JPrime%20Gimnasio.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="btn btn--ghost plan__btn">Elegir elite</a>
         </article>
       </div>
     </div>
