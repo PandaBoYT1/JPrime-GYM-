@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de administración | JPrime Gimnasio</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #08090a; --panel: #0f1210; --card: #14170f; --card-2: #0d0f0e;
+      --text: #e9ede8; --muted: #8b918a; --accent: #c4f53f; --accent-soft: rgba(196,245,63,.14);
+      --border: rgba(255,255,255,.09); --border-accent: rgba(196,245,63,.18); --danger: #ff5252;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    h1,h2,h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .5px; }
+    a { color: var(--accent); }
+    img { display: block; max-width: 100%; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 20px; border-radius: 9px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; border: 1px solid transparent; transition: transform .15s, box-shadow .15s, background .15s, border-color .15s; }
+    .btn--primary { background: var(--accent); color: var(--bg); box-shadow: 0 0 20px rgba(196,245,63,.35); }
+    .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(196,245,63,.4); }
+    .btn--ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,.22); }
+    .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn--danger { background: transparent; color: var(--danger); border-color: rgba(255,82,82,.5); }
+    .btn--danger:hover { background: var(--danger); color: #fff; }
+    .btn--sm { padding: 7px 14px; font-size: .85rem; }
+
+    input, textarea { width: 100%; padding: 12px 14px; background: #0a0c0b; color: var(--text);
+      border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: .95rem; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    label { display: block; font-size: .8rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .5px; font-weight: 700; margin-bottom: 6px; }
+    .field { margin-bottom: 16px; }
+
+    /* Login */
+    .login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .login__card { width: 100%; max-width: 380px; background: linear-gradient(160deg, var(--card), var(--card-2));
+      border: 1px solid var(--border-accent); border-radius: 18px; padding: 36px 30px; text-align: center; }
+    .login__logo { width: 74px; height: 74px; border-radius: 50%; margin: 0 auto 16px; box-shadow: 0 0 22px rgba(196,245,63,.35); }
+    .login__card h1 { font-size: 1.6rem; color: #fff; }
+    .login__card p { color: var(--muted); font-size: .9rem; margin-bottom: 22px; }
+    .login__card .field { text-align: left; }
+    .login__error { color: var(--danger); font-size: .88rem; min-height: 20px; margin-top: 6px; }
+
+    /* App */
+    .app { display: none; min-height: 100vh; }
+    .app.active { display: block; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 14px 22px; background: rgba(8,9,10,.9); border-bottom: 1px solid var(--border-accent);
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); }
+    .topbar__brand { display: flex; align-items: center; gap: 12px; }
+    .topbar__brand img { width: 40px; height: 40px; border-radius: 50%; }
+    .topbar__brand span { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.15rem; color: #fff; letter-spacing: 1px; }
+    .topbar__brand b { color: var(--accent); }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 24px 22px 60px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+    .tab { padding: 10px 18px; border-radius: 100px; background: var(--panel); border: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; transition: .15s; }
+    .tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .panel__head { margin-bottom: 18px; }
+    .panel__head h2 { font-size: 1.7rem; color: #fff; }
+    .panel__head p { color: var(--muted); font-size: .92rem; }
+
+    .card { background: linear-gradient(160deg, var(--card), var(--card-2)); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .thumb { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #101210; }
+    .thumb__img { width: 100%; height: 150px; object-fit: cover; background: #101210; }
+    .thumb__body { padding: 12px; }
+
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    .note { background: var(--accent-soft); border: 1px solid var(--border-accent); border-radius: 10px;
+      padding: 12px 14px; font-size: .85rem; color: #c9d0c6; margin-bottom: 20px; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--accent); color: var(--bg); font-weight: 700; padding: 12px 22px; border-radius: 100px;
+      opacity: 0; transition: .3s; z-index: 50; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .file-btn { position: relative; overflow: hidden; }
+    .file-btn input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .muted-sm { color: var(--muted); font-size: .8rem; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Login -->
+  <div class="login" id="loginView">
+    <form class="login__card" id="loginForm">
+      <img class="login__logo" src="assets/logo.png" alt="JPrime Gimnasio" />
+      <h1>Panel de administración</h1>
+      <p>Ingresa con tus credenciales de dueño.</p>
+      <div class="field">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="clave">Contraseña</label>
+        <input type="password" id="clave" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn btn--primary" style="width:100%">Ingresar</button>
+      <p class="login__error" id="loginError"></p>
+    </form>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="appView">
+    <div class="topbar">
+      <a class="topbar__brand" href="index.html">
+        <img src="assets/logo.png" alt="JPrime" />
+        <span>JPRIME <b>ADMIN</b></span>
+      </a>
+      <div style="display:flex; gap:10px;">
+        <a class="btn btn--ghost btn--sm" href="index.html" target="_blank">Ver sitio</a>
+        <button class="btn btn--danger btn--sm" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="note">
+        Los cambios se guardan en <strong>este navegador</strong> (localStorage). Se reflejan al instante en el sitio
+        abierto en <em>esta misma PC/navegador</em>. Para que los vean todos los visitantes se necesita un servidor/backend
+        (ver README).
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="horario">Horarios</button>
+        <button class="tab" data-tab="galeria">Galería</button>
+        <button class="tab" data-tab="planes">Planes</button>
+        <button class="tab" data-tab="suplementos">Suplementos</button>
+      </div>
+
+      <!-- Horario -->
+      <section class="panel active" data-panel="horario">
+        <div class="panel__head"><h2>Horario de atención</h2><p>Horario general del gimnasio (Lunes a Sábado).</p></div>
+        <div class="card">
+          <div class="row">
+            <div class="field"><label for="apertura">Hora de apertura</label><input type="text" id="apertura" placeholder="5:00" /></div>
+            <div class="field"><label for="cierre">Hora de cierre</label><input type="text" id="cierre" placeholder="23:00" /></div>
+          </div>
+          <p class="muted-sm">Vista previa: <span id="horarioPreview" style="color:var(--accent)"></span></p>
+          <div class="toolbar">
+            <button class="btn btn--primary" id="saveHorario">Guardar horario</button>
+            <button class="btn btn--ghost btn--sm" data-reset="horario">Restaurar por defecto</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galería -->
+      <section class="panel" data-panel="galeria">
+        <div class="panel__head"><h2>Galería de fotos</h2><p>Reemplaza las fotos y sus descripciones.</p></div>
+        <div class="grid-thumbs" id="galList"></div>
+        <div class="toolbar">
+          <button class="btn btn--primary" id="saveGaleria">Guardar galería</button>
+          <button class="btn btn--ghost btn--sm" data-reset="galeria">Restaurar originales</button>
+        </div>
+      </section>
+
+      <!-- Planes -->
+      <section class="panel" data-panel="planes">
+        <div class="panel__head"><h2>Planes y precios</h2><p>Edita nombre, precio, descripción y beneficios de cada plan.</p></div>
+        <div id="planList"></div>
+        <div class="toolbar">
+          <button class="btn btn--primary" id="savePlanes">Guardar planes</button>
+          <button class="btn btn--ghost btn--sm" data-reset="planes">Restaurar por defecto</button>
+        </div>
+      </section>
+
+      <!-- Suplementos -->
+      <section class="panel" data-panel="suplementos">
+        <div class="panel__head"><h2>Suplementos en venta</h2><p>Agrega productos, sus fotos, precios y el mensaje de WhatsApp.</p></div>
+        <div id="supList"></div>
+        <div class="toolbar">
+          <button class="btn btn--ghost btn--sm" id="addSup">+ Agregar suplemento</button>
+          <button class="btn btn--primary" id="saveSups">Guardar suplementos</button>
+          <button class="btn btn--ghost btn--sm" data-reset="suplementos">Restaurar por defecto</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/datos.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

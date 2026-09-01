@@ -195,6 +195,38 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   background: linear-gradient(to top, rgba(8, 9, 10, 0.9), transparent);
 }
 
+/* ===== Suplementos ===== */
+.supplement {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: linear-gradient(160deg, var(--card-1), var(--card-2));
+  border: 1px solid var(--border-accent); border-radius: 16px;
+}
+.supplement__img {
+  height: 210px; background-size: cover; background-position: center;
+  background-color: #101210; border-bottom: 1px solid var(--border);
+}
+.supplement__img--empty {
+  display: flex; align-items: center; justify-content: center;
+  background-image: repeating-linear-gradient(45deg, #101210, #101210 10px, #151813 10px, #151813 20px);
+}
+.supplement__img--empty span {
+  font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; letter-spacing: 1px;
+  color: #6f7a68; text-transform: uppercase; padding: 8px 14px;
+  border: 1px dashed rgba(196, 245, 63, 0.3); border-radius: 6px;
+}
+.supplement__body { display: flex; flex-direction: column; flex: 1; padding: 22px 22px 24px; }
+.supplement__name { font-size: 1.35rem; color: #fff; }
+.supplement__desc { color: var(--muted-2); font-size: .9rem; margin-top: 4px; }
+.supplement__price {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.9rem;
+  color: var(--accent); margin: 14px 0 18px;
+}
+.supplement__btn { margin-top: auto; width: 100%; }
+
+/* Enlace discreto al panel admin */
+.footer__admin { color: #3a4038; transition: color .2s ease; }
+.footer__admin:hover { color: var(--accent); }
+
 /* ===== CTA con mascota ===== */
 .cta {
   position: relative; overflow: hidden;
