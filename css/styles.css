@@ -287,16 +287,43 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
 .social__btn--tt:hover { background: #000; box-shadow: 0 8px 20px rgba(0, 0, 0, .5); border-color: #25f4ee; }
 .social__btn--wa:hover { background: #25d366; box-shadow: 0 8px 20px rgba(37, 211, 102, .4); border-color: #25d366; }
 .social__btn:hover svg { fill: #fff; }
-.contact__social { margin-top: 26px; }
-.contact__social-label {
-  display: block; margin-bottom: 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase; font-size: .8rem; color: var(--muted-2);
-}
-.contact__form {
+.contact__form, .contact__redes {
   padding: 34px 32px; border-radius: 18px;
   background: linear-gradient(160deg, var(--card-1), var(--card-2));
   border: 1px solid var(--border-accent);
 }
+
+/* Botones grandes de redes (reemplazan el formulario) */
+.redes { display: flex; flex-direction: column; gap: 14px; }
+.rede {
+  display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 14px;
+  color: #fff; border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.rede:hover { transform: translateY(-3px); }
+.rede__icon {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.rede__icon svg { width: 28px; height: 28px; fill: #fff; }
+.rede__body { display: flex; flex-direction: column; line-height: 1.2; }
+.rede__body b { font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+.rede__body small { font-size: .9rem; color: rgba(255, 255, 255, 0.75); }
+.rede__go { margin-left: auto; font-size: 1.8rem; font-weight: 700; opacity: .7; }
+
+.rede--wa { border-color: rgba(37, 211, 102, .55); }
+.rede--wa .rede__icon { background: #25d366; }
+.rede--wa:hover { background: rgba(37, 211, 102, .16); border-color: #25d366; box-shadow: 0 10px 26px rgba(37, 211, 102, .3); }
+.rede--fb { border-color: rgba(24, 119, 242, .55); }
+.rede--fb .rede__icon { background: #1877f2; }
+.rede--fb:hover { background: rgba(24, 119, 242, .16); border-color: #1877f2; box-shadow: 0 10px 26px rgba(24, 119, 242, .3); }
+.rede--ig { border-color: rgba(214, 41, 118, .55); }
+.rede--ig .rede__icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.rede--ig:hover { background: rgba(214, 41, 118, .16); border-color: #dc2743; box-shadow: 0 10px 26px rgba(214, 41, 118, .3); }
+.rede--tt { border-color: rgba(37, 244, 238, .5); }
+.rede--tt .rede__icon { background: #010101; border: 1px solid #25f4ee; }
+.rede--tt:hover { background: rgba(37, 244, 238, .12); border-color: #25f4ee; box-shadow: 0 10px 26px rgba(0, 0, 0, .5); }
 .contact__form-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.6rem; color: #fff; text-transform: uppercase; letter-spacing: .5px; }
 .contact__form-sub { color: var(--muted-2); font-size: .9rem; margin-top: 6px; margin-bottom: 24px; }
 .field { margin-bottom: 16px; }
