@@ -103,6 +103,8 @@
     work.galeria = d.galeria;
     work.planes = d.planes;
     work.suplementos = d.suplementos;
+    work.disciplinas = d.disciplinas;
+    work.horarioClases = d.horarioClases;
   }
 
   /* ---------- HORARIO ---------- */
@@ -271,6 +273,95 @@
     if (saveOrWarn(J.KEYS.suplementos, work.suplementos)) toast("Suplementos guardados ✓");
   });
 
+  /* ---------- CLASES (disciplinas) ---------- */
+  function renderDisciplinas() {
+    var list = $("#discList");
+    list.innerHTML = work.disciplinas.map(function (d, i) {
+      return '' +
+        '<div class="card" data-i="' + i + '">' +
+          '<div class="row">' +
+            '<div class="field"><label>Icono (2-3 letras)</label><input class="dc-icono" type="text" maxlength="4" value="' + esc(d.icono) + '" /></div>' +
+            '<div class="field"><label>Nombre de la clase</label><input class="dc-titulo" type="text" value="' + esc(d.titulo) + '" /></div>' +
+          "</div>" +
+          '<div class="field"><label>Descripción</label><input class="dc-texto" type="text" value="' + esc(d.texto) + '" /></div>' +
+          '<button class="btn btn--danger btn--sm dc-del">Eliminar clase</button>' +
+        "</div>";
+    }).join("");
+    $$(".dc-del", list).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        collectDiscInto();
+        work.disciplinas.splice(parseInt(btn.closest(".card").getAttribute("data-i"), 10), 1);
+        renderDisciplinas();
+      });
+    });
+  }
+  function collectDiscInto() {
+    var arr = [];
+    $$("#discList .card").forEach(function (card) {
+      arr.push({
+        icono: $(".dc-icono", card).value.trim(),
+        titulo: $(".dc-titulo", card).value.trim(),
+        texto: $(".dc-texto", card).value.trim()
+      });
+    });
+    work.disciplinas = arr;
+  }
+  $("#addDisc").addEventListener("click", function () {
+    collectDiscInto();
+    work.disciplinas.push({ icono: "NEW", titulo: "Nueva clase", texto: "" });
+    renderDisciplinas();
+  });
+  $("#saveDisc").addEventListener("click", function () {
+    collectDiscInto();
+    if (saveOrWarn(J.KEYS.disciplinas, work.disciplinas)) toast("Clases guardadas ✓");
+  });
+
+  /* ---------- HORARIO DE CLASES (tabla) ---------- */
+  function renderSched() {
+    var hc = work.horarioClases;
+    var dias = hc.dias;
+    var head = "<th>Hora</th>" + dias.map(function (d) { return "<th>" + esc(d) + "</th>"; }).join("") + "<th></th>";
+    var rows = hc.filas.map(function (f, i) {
+      var cells = dias.map(function (_, c) {
+        return '<td><input class="sc-cell" data-c="' + c + '" type="text" value="' + esc(f.clases[c] != null ? f.clases[c] : "") + '" style="min-width:110px" /></td>';
+      }).join("");
+      return '<tr data-i="' + i + '">' +
+        '<td><input class="sc-hora" type="text" value="' + esc(f.hora) + '" style="min-width:80px" /></td>' +
+        cells +
+        '<td><button class="btn btn--danger btn--sm sc-del" title="Eliminar fila">✕</button></td>' +
+      "</tr>";
+    }).join("");
+    $("#schedEditor").innerHTML =
+      '<table style="width:100%;border-collapse:separate;border-spacing:6px;min-width:660px">' +
+        "<thead><tr>" + head + "</tr></thead><tbody>" + rows + "</tbody></table>";
+    $$(".sc-del", $("#schedEditor")).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        collectSchedInto();
+        work.horarioClases.filas.splice(parseInt(btn.closest("tr").getAttribute("data-i"), 10), 1);
+        renderSched();
+      });
+    });
+  }
+  function collectSchedInto() {
+    var filas = [];
+    $$("#schedEditor tbody tr").forEach(function (tr) {
+      var clases = $$(".sc-cell", tr).map(function (inp) { return inp.value.trim() || "—"; });
+      filas.push({ hora: $(".sc-hora", tr).value.trim(), clases: clases });
+    });
+    work.horarioClases.filas = filas;
+  }
+  $("#addRow").addEventListener("click", function () {
+    collectSchedInto();
+    var n = work.horarioClases.dias.length;
+    var clases = []; for (var k = 0; k < n; k++) clases.push("—");
+    work.horarioClases.filas.push({ hora: "00:00", clases: clases });
+    renderSched();
+  });
+  $("#saveSched").addEventListener("click", function () {
+    collectSchedInto();
+    if (saveOrWarn(J.KEYS.horarioClases, work.horarioClases)) toast("Horario de clases guardado ✓");
+  });
+
   /* ---------- Restaurar por defecto ---------- */
   $$("[data-reset]").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -286,6 +377,8 @@
   function renderAll() {
     loadWork();
     renderHorario();
+    renderDisciplinas();
+    renderSched();
     renderGaleria();
     renderPlanes();
     renderSuplementos();

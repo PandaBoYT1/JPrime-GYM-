@@ -53,7 +53,27 @@ window.JPRIME = (function () {
       { nombre: "Proteína Whey Gold", desc: "2.27 kg · Chocolate", precio: 180, img: "", mensaje: "" },
       { nombre: "Creatina Monohidrato", desc: "500 g · Sin sabor", precio: 80, img: "", mensaje: "" },
       { nombre: "Pre-Workout Extremo", desc: "300 g · Tropical", precio: 120, img: "", mensaje: "" }
-    ]
+    ],
+    disciplinas: [
+      { icono: "MS", titulo: "Musculación", texto: "Zona de peso libre y máquinas de última generación." },
+      { icono: "FN", titulo: "Funcional", texto: "Entrenamiento de fuerza y movilidad en circuito." },
+      { icono: "CT", titulo: "CrossTraining", texto: "Alta intensidad, WODs diarios y comunidad." },
+      { icono: "SP", titulo: "Spinning", texto: "Ciclo indoor con ritmo, luces y música en vivo." },
+      { icono: "BX", titulo: "Boxeo", texto: "Técnica, cardio y descarga total de energía." },
+      { icono: "HT", titulo: "HIIT", texto: "Quema máxima en sesiones cortas e intensas." },
+      { icono: "YG", titulo: "Yoga", texto: "Flexibilidad, respiración y recuperación activa." },
+      { icono: "GAP", titulo: "GAP", texto: "Glúteos, abdomen y piernas con enfoque total." }
+    ],
+    horarioClases: {
+      dias: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      filas: [
+        { hora: "06:00", clases: ["Funcional", "Spinning", "Funcional", "HIIT", "Funcional", "CrossTraining"] },
+        { hora: "09:00", clases: ["Musculación", "Boxeo", "Musculación", "Yoga", "Musculación", "Yoga"] },
+        { hora: "12:00", clases: ["HIIT", "Funcional", "HIIT", "Funcional", "HIIT", "GAP"] },
+        { hora: "18:00", clases: ["CrossTraining", "Spinning", "Boxeo", "Spinning", "CrossTraining", "—"] },
+        { hora: "20:00", clases: ["Boxeo", "HIIT", "GAP", "Boxeo", "Spinning", "—"] }
+      ]
+    }
   };
 
   var KEYS = {
@@ -61,6 +81,8 @@ window.JPRIME = (function () {
     planes: "jprime_planes",
     galeria: "jprime_galeria",
     suplementos: "jprime_suplementos",
+    disciplinas: "jprime_disciplinas",
+    horarioClases: "jprime_horario_clases",
     sesion: "jprime_admin_session"
   };
 
@@ -90,7 +112,9 @@ window.JPRIME = (function () {
       horario: load(KEYS.horario, DEFAULTS.horario),
       planes: load(KEYS.planes, DEFAULTS.planes),
       galeria: load(KEYS.galeria, DEFAULTS.galeria),
-      suplementos: load(KEYS.suplementos, DEFAULTS.suplementos)
+      suplementos: load(KEYS.suplementos, DEFAULTS.suplementos),
+      disciplinas: load(KEYS.disciplinas, DEFAULTS.disciplinas),
+      horarioClases: load(KEYS.horarioClases, DEFAULTS.horarioClases)
     };
   }
 

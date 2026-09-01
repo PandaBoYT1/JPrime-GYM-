@@ -49,6 +49,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   border: 1px solid transparent;
 }
 .btn--lg { padding: 16px 34px; font-size: 1.1rem; }
+.btn--sm { padding: 9px 16px; font-size: .85rem; }
 .btn--primary { background: var(--accent); color: var(--bg); box-shadow: 0 0 26px rgba(196, 245, 63, 0.4); }
 .btn--ghost { border-color: rgba(255, 255, 255, 0.22); color: var(--text); background: transparent; }
 
@@ -61,6 +62,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   border-bottom: 1px solid var(--border-accent);
 }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.header__actions { display: flex; align-items: center; gap: 12px; }
 .logo { display: flex; align-items: center; gap: 12px; }
 .logo__mark { width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 0 18px rgba(196, 245, 63, 0.35); }
 .logo--sm .logo__mark { width: 40px; height: 40px; }
@@ -223,10 +225,6 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
 }
 .supplement__btn { margin-top: auto; width: 100%; }
 
-/* Enlace discreto al panel admin */
-.footer__admin { color: #3a4038; transition: color .2s ease; }
-.footer__admin:hover { color: var(--accent); }
-
 /* ===== CTA con mascota ===== */
 .cta {
   position: relative; overflow: hidden;
@@ -337,7 +335,7 @@ h1, h2, h3, .logo__text, .stat__num, .plan__name, .plan__price, .discipline__tit
   .cta__text { margin: 0 auto; }
 }
 @media (max-width: 760px) {
-  .header__cta { display: none; }
+  .header__cta, .header__actions { display: none; }
   .nav {
     position: fixed; top: 0; right: -100%; width: 78%; max-width: 320px; height: 100vh;
     display: flex; flex-direction: column; align-items: flex-start; gap: 34px;

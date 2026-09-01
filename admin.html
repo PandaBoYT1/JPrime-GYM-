@@ -136,6 +136,8 @@
 
       <div class="tabs">
         <button class="tab active" data-tab="horario">Horarios</button>
+        <button class="tab" data-tab="clases">Clases</button>
+        <button class="tab" data-tab="horarioClases">Horario clases</button>
         <button class="tab" data-tab="galeria">Galería</button>
         <button class="tab" data-tab="planes">Planes</button>
         <button class="tab" data-tab="suplementos">Suplementos</button>
@@ -154,6 +156,28 @@
             <button class="btn btn--primary" id="saveHorario">Guardar horario</button>
             <button class="btn btn--ghost btn--sm" data-reset="horario">Restaurar por defecto</button>
           </div>
+        </div>
+      </section>
+
+      <!-- Clases (disciplinas) -->
+      <section class="panel" data-panel="clases">
+        <div class="panel__head"><h2>Clases / disciplinas</h2><p>Edita las tarjetas de disciplinas (icono, nombre y descripción).</p></div>
+        <div id="discList"></div>
+        <div class="toolbar">
+          <button class="btn btn--ghost btn--sm" id="addDisc">+ Agregar clase</button>
+          <button class="btn btn--primary" id="saveDisc">Guardar clases</button>
+          <button class="btn btn--ghost btn--sm" data-reset="disciplinas">Restaurar por defecto</button>
+        </div>
+      </section>
+
+      <!-- Horario de clases (tabla) -->
+      <section class="panel" data-panel="horarioClases">
+        <div class="panel__head"><h2>Horario de clases</h2><p>Edita la tabla de clases por día y hora. Deja "—" en las horas sin clase.</p></div>
+        <div class="card" style="overflow-x:auto"><div id="schedEditor"></div></div>
+        <div class="toolbar">
+          <button class="btn btn--ghost btn--sm" id="addRow">+ Agregar horario (fila)</button>
+          <button class="btn btn--primary" id="saveSched">Guardar horario de clases</button>
+          <button class="btn btn--ghost btn--sm" data-reset="horarioClases">Restaurar por defecto</button>
         </div>
       </section>
 

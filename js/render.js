@@ -18,6 +18,31 @@
   function render() {
     var data = J.getData();
 
+    // ---- Disciplinas (clases) ----
+    var discGrid = document.getElementById("disciplinesGrid");
+    if (discGrid) {
+      discGrid.innerHTML = data.disciplinas.map(function (d, i) {
+        return '' +
+          '<article class="discipline reveal" data-delay="' + (i + 1) + '">' +
+            '<div class="discipline__icon">' + esc(d.icono) + "</div>" +
+            '<h3 class="discipline__title">' + esc(d.titulo) + "</h3>" +
+            '<p class="discipline__text">' + esc(d.texto) + "</p>" +
+          "</article>";
+      }).join("");
+    }
+
+    // ---- Horario de clases (tabla) ----
+    var schedWrap = document.getElementById("scheduleWrap");
+    if (schedWrap) {
+      var hc = data.horarioClases;
+      var head = "<tr><th>Hora</th>" + hc.dias.map(function (d) { return "<th>" + esc(d) + "</th>"; }).join("") + "</tr>";
+      var body = hc.filas.map(function (f) {
+        var cells = f.clases.map(function (c) { return "<td>" + esc(c) + "</td>"; }).join("");
+        return "<tr><td>" + esc(f.hora) + "</td>" + cells + "</tr>";
+      }).join("");
+      schedWrap.innerHTML = '<table class="schedule"><thead>' + head + "</thead><tbody>" + body + "</tbody></table>";
+    }
+
     // ---- Planes ----
     var plansGrid = document.getElementById("plansGrid");
     if (plansGrid) {
