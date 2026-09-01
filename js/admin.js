@@ -50,7 +50,7 @@
 
   $("#logoutBtn").addEventListener("click", function () {
     try { localStorage.removeItem(J.KEYS.sesion); } catch (e) {}
-    location.reload();
+    window.location.href = "index.html";
   });
 
   /* ---------- Tabs ---------- */
